@@ -30,6 +30,17 @@ import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices';
+import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
+import SpecialCharacters from '@ckeditor/ckeditor5-special-characters/src/specialcharacters';
+import SpecialCharactersEssentials from '@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials';
+import Font from '@ckeditor/ckeditor5-font/src/font';
+import MathText from '../mathplugin/mathTextPlugin';
+import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
+import Strikethrough from '@ckeditor/ckeditor5-basic-styles/src/strikethrough';
+import Code from '@ckeditor/ckeditor5-basic-styles/src/code';
+import Subscript from '@ckeditor/ckeditor5-basic-styles/src/subscript';
+import Superscript from '@ckeditor/ckeditor5-basic-styles/src/superscript';
+
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -39,6 +50,11 @@ ClassicEditor.builtinPlugins = [
 	UploadAdapter,
 	Autoformat,
 	Bold,
+	Underline,
+	Strikethrough,
+	Subscript,
+	Superscript,
+	Code,
 	Italic,
 	BlockQuote,
 	CKFinder,
@@ -52,13 +68,17 @@ ClassicEditor.builtinPlugins = [
 	ImageUpload,
 	Indent,
 	Link,
+	Font,
 	List,
 	MediaEmbed,
 	Paragraph,
 	PasteFromOffice,
 	Table,
 	TableToolbar,
-	TextTransformation
+	TextTransformation,
+	ImageResize,
+	MathText,
+	SpecialCharacters, SpecialCharactersEssentials
 ];
 
 // Editor configuration.
@@ -69,6 +89,7 @@ ClassicEditor.defaultConfig = {
 			'|',
 			'bold',
 			'italic',
+			'underline', 'strikethrough', 'code','subscript', 'superscript',
 			'link',
 			'bulletedList',
 			'numberedList',
@@ -81,7 +102,9 @@ ClassicEditor.defaultConfig = {
 			'insertTable',
 			'mediaEmbed',
 			'undo',
-			'redo'
+			'redo',
+			'MathText',
+			'specialCharacters'
 		]
 	},
 	image: {
@@ -89,7 +112,8 @@ ClassicEditor.defaultConfig = {
 			'imageStyle:full',
 			'imageStyle:side',
 			'|',
-			'imageTextAlternative'
+			'imageTextAlternative',
+			'imageResize'
 		]
 	},
 	table: {
