@@ -100,12 +100,32 @@ export default class ImageResizeEditing extends Plugin {
 				const viewWriter = conversionApi.writer;
 				const figure = conversionApi.mapper.toViewElement( data.item );
 
+				// eslint-disable-next-line no-undef
+				const resizeConfig = editor.config.get( 'image.resizeOptions' );
+				// eslint-disable-next-line no-unused-vars
+				const resizeOldValueClassName = resizeConfig.find( config => {
+					return data.attributeOldValue && config.value === data.attributeOldValue.replace( '%', '' );
+				} );
+				// eslint-disable-next-line no-unused-vars
+				const resizeNewValueClassName = resizeConfig.find( config => {
+					return data.attributeNewValue && config.value === data.attributeNewValue.replace( '%', '' );
+				} );
+
 				if ( data.attributeNewValue !== null ) {
 					viewWriter.setStyle( 'width', data.attributeNewValue, figure );
 					viewWriter.addClass( 'image_resized', figure );
+					if ( resizeOldValueClassName ) {
+						viewWriter.removeClass( resizeOldValueClassName.className, figure );
+					}
+					if ( resizeNewValueClassName ) {
+						viewWriter.addClass( resizeNewValueClassName.className, figure );
+					}
 				} else {
 					viewWriter.removeStyle( 'width', figure );
 					viewWriter.removeClass( 'image_resized', figure );
+					if ( resizeOldValueClassName ) {
+						viewWriter.removeClass( resizeOldValueClassName.className, figure );
+					}
 				}
 			} )
 		);

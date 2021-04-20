@@ -1,6 +1,6 @@
 {
   "name": "v-ckeditor",
-  "version": "0.0.11",
+  "version": "0.0.13",
   "description": "The classic editor build of CKEditor 5 – the best browser-based rich text editor.",
   "keywords": [
     "ckeditor",
@@ -31,6 +31,7 @@
     "@ckeditor/ckeditor5-paste-from-office": "^27.0.0",
     "@ckeditor/ckeditor5-table": "^27.0.0",
     "@ckeditor/ckeditor5-typing": "^27.0.0",
+    "@ckeditor/ckeditor5-word-count": "^27.0.0",
     "file-loader": "^6.2.0"
   },
   "devDependencies": {

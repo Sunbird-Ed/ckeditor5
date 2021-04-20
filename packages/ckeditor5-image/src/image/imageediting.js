@@ -57,7 +57,7 @@ export default class ImageEditing extends Plugin {
 			isObject: true,
 			isBlock: true,
 			allowWhere: '$block',
-			allowAttributes: [ 'alt', 'src', 'srcset' ]
+			allowAttributes: [ 'alt', 'src', 'srcset', 'data-asset-variables' ]
 		} );
 
 		conversion.for( 'dataDowncast' ).elementToElement( {
@@ -73,6 +73,7 @@ export default class ImageEditing extends Plugin {
 		conversion.for( 'downcast' )
 			.add( modelToViewAttributeConverter( 'src' ) )
 			.add( modelToViewAttributeConverter( 'alt' ) )
+			.add( modelToViewAttributeConverter( 'data-asset-variables' ) )
 			.add( srcsetAttributeConverter() );
 
 		conversion.for( 'upcast' )
@@ -91,6 +92,13 @@ export default class ImageEditing extends Plugin {
 					key: 'alt'
 				},
 				model: 'alt'
+			} )
+			.attributeToAttribute( {
+				view: {
+					name: 'img',
+					key: 'data-asset-variables'
+				},
+				model: 'data-asset-variables'
 			} )
 			.attributeToAttribute( {
 				view: {

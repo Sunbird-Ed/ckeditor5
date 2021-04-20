@@ -27,8 +27,16 @@
 </div>
 
 <script src="../build/ckeditor.js"></script>
+
 <script>
-	ClassicEditor.create( document.querySelector( '#editor' ) )
+	ClassicEditor.create( document.querySelector( '#editor' ), {
+		wordCount: {
+            onUpdate: stats => {
+                // Prints the current content statistics.
+                console.log( `Characters: ${ stats.characters }\nWords: ${ stats.words }` );
+            }
+        }
+	} )
 		.then( editor => {
 			window.editor = editor;
 		} )

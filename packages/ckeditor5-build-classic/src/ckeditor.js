@@ -15,9 +15,11 @@ import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote';
 import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
 import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
-import Image from '@ckeditor/ckeditor5-image/src/image';
+// eslint-disable-next-line ckeditor5-rules/no-relative-imports
+import Image from '../../ckeditor5-image/src/image';
 import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
+// import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
 import Indent from '@ckeditor/ckeditor5-indent/src/indent';
@@ -30,17 +32,20 @@ import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices';
-import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
+
+import MathText from '../mathplugin/mathTextPlugin';
+
+// eslint-disable-next-line ckeditor5-rules/no-relative-imports
+import ImageResize from '../../ckeditor5-image/src/imageresize';
 import SpecialCharacters from '@ckeditor/ckeditor5-special-characters/src/specialcharacters';
 import SpecialCharactersEssentials from '@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials';
 import Font from '@ckeditor/ckeditor5-font/src/font';
-import MathText from '../mathplugin/mathTextPlugin';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
 import Strikethrough from '@ckeditor/ckeditor5-basic-styles/src/strikethrough';
 import Code from '@ckeditor/ckeditor5-basic-styles/src/code';
 import Subscript from '@ckeditor/ckeditor5-basic-styles/src/subscript';
 import Superscript from '@ckeditor/ckeditor5-basic-styles/src/superscript';
-
+import WordCount from '@ckeditor/ckeditor5-word-count/src/wordcount';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -78,7 +83,7 @@ ClassicEditor.builtinPlugins = [
 	TextTransformation,
 	ImageResize,
 	MathText,
-	SpecialCharacters, SpecialCharactersEssentials
+	SpecialCharacters, SpecialCharactersEssentials, WordCount
 ];
 
 // Editor configuration.
@@ -89,7 +94,7 @@ ClassicEditor.defaultConfig = {
 			'|',
 			'bold',
 			'italic',
-			'underline', 'strikethrough', 'code','subscript', 'superscript',
+			'underline', 'strikethrough', 'code', 'subscript', 'superscript',
 			'link',
 			'bulletedList',
 			'numberedList',
@@ -108,13 +113,39 @@ ClassicEditor.defaultConfig = {
 		]
 	},
 	image: {
+		resizeUnit: '%',
+		resizeOptions: [ {
+			name: 'resizeImage:original',
+			value: null,
+			icon: 'original',
+			className: 'resize-100'
+		},
+		{
+			name: 'resizeImage:25',
+			value: '25',
+			icon: 'small',
+			className: 'resize-25'
+		},
+		{
+			name: 'resizeImage:50',
+			value: '50',
+			icon: 'medium',
+			className: 'resize-50'
+		},
+		{
+			name: 'resizeImage:75',
+			value: '75',
+			icon: 'large',
+			className: 'resize-75'
+		} ],
 		toolbar: [
 			'imageStyle:full',
-			'imageStyle:side',
+			'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight',
 			'|',
 			'imageTextAlternative',
-			'imageResize'
-		]
+			'resizeImage:25', 'resizeImage:50', 'resizeImage:75', 'resizeImage:original'
+		],
+		styles: [ 'full', 'alignLeft', 'alignRight', 'alignCenter' ]
 	},
 	table: {
 		contentToolbar: [
