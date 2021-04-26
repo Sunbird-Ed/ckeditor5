@@ -8,6 +8,11 @@
 			max-width: 800px;
 			margin: 20px auto;
 		}
+		.image_resized.resize-25 { width: 25% }
+		.image_resized.resize-50 { width: 50% }
+		.image_resized.resize-75 { width: 75% }
+
+
 	</style>
 </head>
 <body>
@@ -29,6 +34,7 @@
 <script src="../build/ckeditor.js"></script>
 
 <script>
+
 	ClassicEditor.create( document.querySelector( '#editor' ), {
 		wordCount: {
             onUpdate: stats => {
@@ -39,6 +45,7 @@
 	} )
 		.then( editor => {
 			window.editor = editor;
+			editor.setData('<figure class="image ck-widget ck-widget_with-resizer image_resized resize-50 ck-widget_selected" contenteditable="false"><img src="https://sunbirddev.blob.core.windows.net/sunbird-content-dev/content/do_1132316405761064961124/artifact/0_jmrpnxe-djmth37l_.jpg" alt="do_1132316405761064961124" data-asset-variable="do_1132316405761064961124"></figure>')
 		} )
 		.catch( error => {
 			console.error( 'There was a problem initializing the editor.', error );

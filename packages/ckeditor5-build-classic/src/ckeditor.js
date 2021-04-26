@@ -1,3 +1,4 @@
+/* eslint-disable ckeditor5-rules/no-relative-imports */
 /**
  * @license Copyright (c) 2003-2021, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
@@ -19,9 +20,13 @@ import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 import Image from '../../ckeditor5-image/src/image';
 import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
-// import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
+
+import ImageResizeEditing from '../../ckeditor5-image/src/imageresize/imageresizeediting';
+import ImageResizeButtons from '../../ckeditor5-image/src/imageresize/imageresizebuttons';
+
+
 import Indent from '@ckeditor/ckeditor5-indent/src/indent';
 import Link from '@ckeditor/ckeditor5-link/src/link';
 import List from '@ckeditor/ckeditor5-list/src/list';
@@ -35,8 +40,6 @@ import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices'
 
 import MathText from '../mathplugin/mathTextPlugin';
 
-// eslint-disable-next-line ckeditor5-rules/no-relative-imports
-import ImageResize from '../../ckeditor5-image/src/imageresize';
 import SpecialCharacters from '@ckeditor/ckeditor5-special-characters/src/specialcharacters';
 import SpecialCharactersEssentials from '@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials';
 import Font from '@ckeditor/ckeditor5-font/src/font';
@@ -71,6 +74,8 @@ ClassicEditor.builtinPlugins = [
 	ImageStyle,
 	ImageToolbar,
 	ImageUpload,
+	ImageResizeEditing,
+	ImageResizeButtons,
 	Indent,
 	Link,
 	Font,
@@ -81,7 +86,6 @@ ClassicEditor.builtinPlugins = [
 	Table,
 	TableToolbar,
 	TextTransformation,
-	ImageResize,
 	MathText,
 	SpecialCharacters, SpecialCharactersEssentials, WordCount
 ];
@@ -138,11 +142,7 @@ ClassicEditor.defaultConfig = {
 			icon: 'large',
 			className: 'resize-75'
 		} ],
-		toolbar: [
-			'imageStyle:full',
-			'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight',
-			'|',
-			'imageTextAlternative',
+		toolbar: [ 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight', '|',
 			'resizeImage:25', 'resizeImage:50', 'resizeImage:75', 'resizeImage:original'
 		],
 		styles: [ 'full', 'alignLeft', 'alignRight', 'alignCenter' ]
@@ -154,6 +154,7 @@ ClassicEditor.defaultConfig = {
 			'mergeTableCells'
 		]
 	},
+	removePlugins: [ ImageCaption ],
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en'
 };

@@ -1,6 +1,6 @@
 {
-  "name": "v-ckeditor",
-  "version": "0.0.13",
+  "name": "@project-sunbird/ckeditor-build-classic",
+  "version": "0.0.3",
   "description": "The classic editor build of CKEditor 5 – the best browser-based rich text editor.",
   "keywords": [
     "ckeditor",
