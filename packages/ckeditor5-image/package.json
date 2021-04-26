@@ -62,6 +62,7 @@
     "build"
   ],
   "scripts": {
+    "build": "webpack --mode production",
     "dll:build": "webpack"
   }
 }

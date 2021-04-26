@@ -1,3 +1,4 @@
+/* eslint-disable ckeditor5-rules/no-relative-imports */
 /**
  * @license Copyright (c) 2003-2021, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
@@ -15,11 +16,17 @@ import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote';
 import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
 import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
-import Image from '@ckeditor/ckeditor5-image/src/image';
+// eslint-disable-next-line ckeditor5-rules/no-relative-imports
+import Image from '../../ckeditor5-image/src/image';
 import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
+
+import ImageResizeEditing from '../../ckeditor5-image/src/imageresize/imageresizeediting';
+import ImageResizeButtons from '../../ckeditor5-image/src/imageresize/imageresizebuttons';
+
+
 import Indent from '@ckeditor/ckeditor5-indent/src/indent';
 import Link from '@ckeditor/ckeditor5-link/src/link';
 import List from '@ckeditor/ckeditor5-list/src/list';
@@ -31,6 +38,18 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices';
 
+import MathText from '../mathplugin/mathTextPlugin';
+
+import SpecialCharacters from '@ckeditor/ckeditor5-special-characters/src/specialcharacters';
+import SpecialCharactersEssentials from '@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials';
+import Font from '@ckeditor/ckeditor5-font/src/font';
+import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
+import Strikethrough from '@ckeditor/ckeditor5-basic-styles/src/strikethrough';
+import Code from '@ckeditor/ckeditor5-basic-styles/src/code';
+import Subscript from '@ckeditor/ckeditor5-basic-styles/src/subscript';
+import Superscript from '@ckeditor/ckeditor5-basic-styles/src/superscript';
+import WordCount from '@ckeditor/ckeditor5-word-count/src/wordcount';
+
 export default class ClassicEditor extends ClassicEditorBase {}
 
 // Plugins to include in the build.
@@ -39,6 +58,11 @@ ClassicEditor.builtinPlugins = [
 	UploadAdapter,
 	Autoformat,
 	Bold,
+	Underline,
+	Strikethrough,
+	Subscript,
+	Superscript,
+	Code,
 	Italic,
 	BlockQuote,
 	CKFinder,
@@ -50,15 +74,20 @@ ClassicEditor.builtinPlugins = [
 	ImageStyle,
 	ImageToolbar,
 	ImageUpload,
+	ImageResizeEditing,
+	ImageResizeButtons,
 	Indent,
 	Link,
+	Font,
 	List,
 	MediaEmbed,
 	Paragraph,
 	PasteFromOffice,
 	Table,
 	TableToolbar,
-	TextTransformation
+	TextTransformation,
+	MathText,
+	SpecialCharacters, SpecialCharactersEssentials, WordCount
 ];
 
 // Editor configuration.
@@ -69,6 +98,7 @@ ClassicEditor.defaultConfig = {
 			'|',
 			'bold',
 			'italic',
+			'underline', 'strikethrough', 'code', 'subscript', 'superscript',
 			'link',
 			'bulletedList',
 			'numberedList',
@@ -81,16 +111,41 @@ ClassicEditor.defaultConfig = {
 			'insertTable',
 			'mediaEmbed',
 			'undo',
-			'redo'
+			'redo',
+			'MathText',
+			'specialCharacters'
 		]
 	},
 	image: {
-		toolbar: [
-			'imageStyle:full',
-			'imageStyle:side',
-			'|',
-			'imageTextAlternative'
-		]
+		resizeUnit: '%',
+		resizeOptions: [ {
+			name: 'resizeImage:original',
+			value: null,
+			icon: 'original',
+			className: 'resize-100'
+		},
+		{
+			name: 'resizeImage:25',
+			value: '25',
+			icon: 'small',
+			className: 'resize-25'
+		},
+		{
+			name: 'resizeImage:50',
+			value: '50',
+			icon: 'medium',
+			className: 'resize-50'
+		},
+		{
+			name: 'resizeImage:75',
+			value: '75',
+			icon: 'large',
+			className: 'resize-75'
+		} ],
+		toolbar: [ 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight', '|',
+			'resizeImage:25', 'resizeImage:50', 'resizeImage:75', 'resizeImage:original'
+		],
+		styles: [ 'full', 'alignLeft', 'alignRight', 'alignCenter' ]
 	},
 	table: {
 		contentToolbar: [
@@ -99,6 +154,7 @@ ClassicEditor.defaultConfig = {
 			'mergeTableCells'
 		]
 	},
+	removePlugins: [ ImageCaption ],
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en'
 };
