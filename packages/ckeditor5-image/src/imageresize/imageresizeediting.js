@@ -113,7 +113,7 @@ export default class ImageResizeEditing extends Plugin {
 
 				if ( data.attributeNewValue !== null ) {
 					// enable if style" needs to be added
-					// viewWriter.setStyle( 'width', data.attributeNewValue, figure );
+					viewWriter.setStyle( 'width', data.attributeNewValue, figure );
 					viewWriter.addClass( 'image_resized', figure );
 					if ( resizeOldValueClassName ) {
 						viewWriter.removeClass( resizeOldValueClassName.className, figure );
@@ -122,7 +122,7 @@ export default class ImageResizeEditing extends Plugin {
 						viewWriter.addClass( resizeNewValueClassName.className, figure );
 					}
 				} else {
-					// viewWriter.removeStyle( 'width', figure );
+					viewWriter.removeStyle( 'width', figure );
 					viewWriter.removeClass( 'image_resized', figure );
 					if ( resizeOldValueClassName ) {
 						viewWriter.removeClass( resizeOldValueClassName.className, figure );
@@ -141,7 +141,9 @@ export default class ImageResizeEditing extends Plugin {
 				},
 				model: {
 					key: 'width',
-					value: viewElement => viewElement.getStyle( 'width' )
+					value: viewElement => {
+						return 	viewElement.getStyle( 'width' );
+					}
 				}
 			} );
 	}
