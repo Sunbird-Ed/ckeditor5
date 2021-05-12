@@ -25,6 +25,7 @@ import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
 
 import ImageResizeEditing from '../../ckeditor5-image/src/imageresize/imageresizeediting';
 import ImageResizeButtons from '../../ckeditor5-image/src/imageresize/imageresizebuttons';
+import ImageResizeHandles from '../../ckeditor5-image/src/imageresize/imageresizehandles';
 
 
 import Indent from '@ckeditor/ckeditor5-indent/src/indent';
@@ -76,6 +77,7 @@ ClassicEditor.builtinPlugins = [
 	ImageUpload,
 	ImageResizeEditing,
 	ImageResizeButtons,
+	ImageResizeHandles,
 	Indent,
 	Link,
 	Font,
