@@ -11,6 +11,9 @@
 		.image_resized.resize-25 { width: 25% }
 		.image_resized.resize-50 { width: 50% }
 		.image_resized.resize-75 { width: 75% }
+		.my-align-center { text-align: center }
+		.my-align-left { text-align: left }
+		.my-align-right { text-align: right }
 
 
 	</style>
@@ -41,7 +44,14 @@
                 // Prints the current content statistics.
                 console.log( `Characters: ${ stats.characters }\nWords: ${ stats.words }` );
             }
-        }
+		},
+		alignment: {
+            options: [                
+				{ name: 'left', className: 'my-align-left' },
+				{ name: 'center', className: 'my-align-center' },
+				{ name: 'right', className: 'my-align-right' }
+			]
+        },
 	} )
 		.then( editor => {
 			window.editor = editor;
@@ -54,3 +64,5 @@
 
 </body>
 </html>
+// inline 
+// add css class 
