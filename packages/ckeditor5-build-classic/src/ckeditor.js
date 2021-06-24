@@ -50,6 +50,7 @@ import Code from '@ckeditor/ckeditor5-basic-styles/src/code';
 import Subscript from '@ckeditor/ckeditor5-basic-styles/src/subscript';
 import Superscript from '@ckeditor/ckeditor5-basic-styles/src/superscript';
 import WordCount from '@ckeditor/ckeditor5-word-count/src/wordcount';
+import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -89,7 +90,7 @@ ClassicEditor.builtinPlugins = [
 	TableToolbar,
 	TextTransformation,
 	MathText,
-	SpecialCharacters, SpecialCharactersEssentials, WordCount
+	SpecialCharacters, SpecialCharactersEssentials, WordCount, Alignment
 ];
 
 // Editor configuration.
@@ -100,6 +101,7 @@ ClassicEditor.defaultConfig = {
 			'|',
 			'bold',
 			'italic',
+			'alignment',
 			'underline', 'strikethrough', 'code', 'subscript', 'superscript',
 			'link',
 			'bulletedList',
