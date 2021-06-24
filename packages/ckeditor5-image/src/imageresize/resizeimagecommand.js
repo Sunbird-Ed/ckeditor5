@@ -9,6 +9,7 @@
 
 import { Command } from 'ckeditor5/src/core';
 import { isImage } from '../image/utils';
+import { isSupported } from './utils';
 
 /**
  * The resize image command. Currently, it only supports the width attribute.
@@ -50,6 +51,13 @@ export default class ResizeImageCommand extends Command {
 	execute( options ) {
 		const model = this.editor.model;
 		const imageElement = model.document.selection.getSelectedElement();
+		const userOptions = this.editor.config.get( 'image.resizeOptions' );
+
+		const optionsToConvert = userOptions.filter(
+			option => isSupported( option.name )
+		);
+
+		const shouldUseClasses = optionsToConvert.some( option => !!option.className );
 
 		this.value = {
 			width: options.width,
@@ -58,7 +66,11 @@ export default class ResizeImageCommand extends Command {
 
 		if ( imageElement ) {
 			model.change( writer => {
-				writer.setAttribute( 'width', options.width, imageElement );
+				if ( shouldUseClasses ) {
+					writer.setAttribute( 'resizeImage', options.value, imageElement );
+				} else {
+					writer.setAttribute( 'width', options.width, imageElement );
+				}
 			} );
 		}
 	}

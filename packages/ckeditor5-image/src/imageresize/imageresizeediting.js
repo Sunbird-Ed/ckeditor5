@@ -8,6 +8,7 @@
  */
 
 import { Plugin } from 'ckeditor5/src/core';
+import { isSupported } from './utils';
 import ResizeImageCommand from './resizeimagecommand';
 
 /**
@@ -53,6 +54,11 @@ export default class ImageResizeEditing extends Plugin {
 				name: 'resizeImage:75',
 				value: '75',
 				icon: 'large'
+			},
+			{
+				name: 'resizeImage:100',
+				value: '100',
+				icon: 'full'
 			} ]
 		} );
 	}
@@ -64,8 +70,21 @@ export default class ImageResizeEditing extends Plugin {
 		const editor = this.editor;
 		const resizeImageCommand = new ResizeImageCommand( editor );
 
-		this._registerSchema();
-		this._registerConverters();
+		const options = this.editor.config.get( 'image.resizeOptions' );
+
+		const optionsToConvert = options.filter(
+			option => isSupported( option.name )
+		);
+
+		const shouldUseClasses = optionsToConvert.some( option => !!option.className );
+
+		if ( shouldUseClasses ) {
+			this._registerClassSchema();
+			this._registerClassConverters();
+		} else {
+			this._registerInlineSchema();
+			this._registerConverters();
+		}
 
 		// Register `resizeImage` command and add `imageResize` command as an alias for backward compatibility.
 		editor.commands.add( 'resizeImage', resizeImageCommand );
@@ -75,12 +94,24 @@ export default class ImageResizeEditing extends Plugin {
 	/**
 	 * @private
 	 */
-	_registerSchema() {
+	_registerInlineSchema() {
 		this.editor.model.schema.extend( 'image', { allowAttributes: 'width' } );
 		this.editor.model.schema.setAttributeProperties( 'width', {
 			isFormatting: true
 		} );
 	}
+
+	_registerClassSchema() {
+		this.editor.model.schema.extend( 'image', { allowAttributes: 'resizeImage' } );
+		this.editor.model.schema.setAttributeProperties( 'resizeImage', {
+			isFormatting: true
+		} );
+	}
+
+	_registerClassConverters() {
+		this.editor.conversion.attributeToAttribute( buildClassDefinition( this.editor.config.get( 'image' ) ) );
+	}
+
 
 	/**
 	 * Registers image resize converters.
@@ -100,33 +131,13 @@ export default class ImageResizeEditing extends Plugin {
 				const viewWriter = conversionApi.writer;
 				const figure = conversionApi.mapper.toViewElement( data.item );
 
-				// eslint-disable-next-line no-undef
-				const resizeConfig = editor.config.get( 'image.resizeOptions' );
-				// eslint-disable-next-line no-unused-vars
-				const resizeOldValueClassName = resizeConfig.find( config => {
-					return data.attributeOldValue && config.value === data.attributeOldValue.replace( '%', '' );
-				} );
-				// eslint-disable-next-line no-unused-vars
-				const resizeNewValueClassName = resizeConfig.find( config => {
-					return data.attributeNewValue && config.value === data.attributeNewValue.replace( '%', '' );
-				} );
-
 				if ( data.attributeNewValue !== null ) {
 					// enable if style" needs to be added
 					viewWriter.setStyle( 'width', data.attributeNewValue, figure );
 					viewWriter.addClass( 'image_resized', figure );
-					if ( resizeOldValueClassName ) {
-						viewWriter.removeClass( resizeOldValueClassName.className, figure );
-					}
-					if ( resizeNewValueClassName ) {
-						viewWriter.addClass( resizeNewValueClassName.className, figure );
-					}
 				} else {
 					viewWriter.removeStyle( 'width', figure );
 					viewWriter.removeClass( 'image_resized', figure );
-					if ( resizeOldValueClassName ) {
-						viewWriter.removeClass( resizeOldValueClassName.className, figure );
-					}
 				}
 			} )
 		);
@@ -141,10 +152,26 @@ export default class ImageResizeEditing extends Plugin {
 				},
 				model: {
 					key: 'width',
-					value: viewElement => {
-						return 	viewElement.getStyle( 'width' );
-					}
+					value: viewElement => viewElement.getStyle( 'width' )
 				}
 			} );
 	}
+}
+
+function buildClassDefinition( options ) {
+	const definition = {
+		model: {
+			key: 'resizeImage',
+			values: options.resizeOptions.map( option => option.name )
+		},
+		view: {}
+	};
+
+	for ( const option of options.resizeOptions ) {
+		definition.view[ option.name ] = {
+			key: 'class',
+			value: option.className
+		};
+	}
+	return definition;
 }
