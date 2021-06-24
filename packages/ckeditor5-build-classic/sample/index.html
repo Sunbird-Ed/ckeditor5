@@ -8,7 +8,6 @@
 			max-width: 1200px;
 			margin: 20px auto;
 		}
-
 		figure img {
 			width: 100%;
 		}
@@ -17,6 +16,9 @@
 		.resize-50 { width: 50% }
 		.resize-75 { width: 75% }
 		.resize-100 { width: 100% }
+		.text-left { text-align: left }
+		.text-center { text-align: center }
+		.text-right { text-align: right }
 
 
 	</style>
@@ -96,7 +98,14 @@
                 // Prints the current content statistics.
                 console.log( `Characters: ${ stats.characters }\nWords: ${ stats.words }` );
             }
-        }
+		},
+		alignment: {
+            options: [
+				{ name: 'left', className: 'text-left' },
+				{ name: 'center', className: 'text-center' },
+				{ name: 'right', className: 'text-right' }
+			]
+        },
 	} )
 		.then( editor => {
 			window.editor = editor;
