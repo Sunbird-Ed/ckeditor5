@@ -27,7 +27,6 @@ import ImageResizeEditing from '../../ckeditor5-image/src/imageresize/imageresiz
 import ImageResizeButtons from '../../ckeditor5-image/src/imageresize/imageresizebuttons';
 import ImageResizeHandles from '../../ckeditor5-image/src/imageresize/imageresizehandles';
 
-
 import Indent from '@ckeditor/ckeditor5-indent/src/indent';
 import Link from '@ckeditor/ckeditor5-link/src/link';
 import List from '@ckeditor/ckeditor5-list/src/list';
@@ -123,12 +122,6 @@ ClassicEditor.defaultConfig = {
 	image: {
 		resizeUnit: '%',
 		resizeOptions: [ {
-			name: 'resizeImage:original',
-			value: null,
-			icon: 'original',
-			className: 'resize-100'
-		},
-		{
 			name: 'resizeImage:25',
 			value: '25',
 			icon: 'small',
@@ -145,9 +138,23 @@ ClassicEditor.defaultConfig = {
 			value: '75',
 			icon: 'large',
 			className: 'resize-75'
-		} ],
+		},
+		{
+			name: 'resizeImage:100',
+			value: '100',
+			icon: 'full',
+			className: 'resize-100'
+		},
+		{
+			name: 'resizeImage:original',
+			value: null,
+			icon: 'original',
+			className: 'resize-original'
+		}
+		],
 		toolbar: [ 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight', '|',
-			'resizeImage:25', 'resizeImage:50', 'resizeImage:75', 'resizeImage:original'
+			'resizeImage:25', 'resizeImage:50', 'resizeImage:75', 'resizeImage:100',
+			'resizeImage:original'
 		],
 		styles: [ 'full', 'alignLeft', 'alignRight', 'alignCenter' ]
 	},

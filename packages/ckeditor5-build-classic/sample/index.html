@@ -5,15 +5,20 @@
 	<title>CKEditor 5 – classic editor build – development sample</title>
 	<style>
 		body {
-			max-width: 800px;
+			max-width: 1200px;
 			margin: 20px auto;
 		}
-		.image_resized.resize-25 { width: 25% }
-		.image_resized.resize-50 { width: 50% }
-		.image_resized.resize-75 { width: 75% }
-        .text-left { text-align: left }
+		figure img {
+			width: 100%;
+		}
+
+		.resize-25 { width: 25% }
+		.resize-50 { width: 50% }
+		.resize-75 { width: 75% }
+		.resize-100 { width: 100% }
+		.text-left { text-align: left }
 		.text-center { text-align: center }
-        .text-right { text-align: right }
+		.text-right { text-align: right }
 
 
 	</style>
@@ -35,10 +40,59 @@
 </div>
 
 <script src="../build/ckeditor.js"></script>
+<script src="../../../node_modules//@ckeditor/ckeditor5-inspector/build/inspector.js"></script>
+
 
 <script>
 
 	ClassicEditor.create( document.querySelector( '#editor' ), {
+		image: {
+			resizeUnit: '%',
+			resizeOptions: [ {
+				name: 'resizeImage:25',
+				value: '25',
+				icon: 'small',
+				className: 'resize-25'
+			},
+			{
+				name: 'resizeImage:50',
+				value: '50',
+				icon: 'medium',
+				className: 'resize-50'
+			},
+			{
+				name: 'resizeImage:75',
+				value: '75',
+				icon: 'large',
+				className: 'resize-75'
+			},
+			{
+				name: 'resizeImage:100',
+				value: '100',
+				icon: 'full',
+				className: 'resize-100'
+			},
+			{
+				name: 'resizeImage:original',
+				value: null,
+				icon: 'original',
+				className: "resize-original"
+			}
+			],
+			toolbar: [ 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight', '|',
+				'resizeImage:25', 'resizeImage:50', 'resizeImage:75', 'resizeImage:100',
+				'resizeImage:original'
+			],
+			styles: [ 'full', 'alignLeft', 'alignRight', 'alignCenter' ]
+		},
+		alignment: {
+            options: [
+                { name: 'left', className: 'my-align-left' },
+                { name: 'right', className: 'my-align-right' },
+								{ name: 'center', className: 'my-align-center' },
+								{ name: 'justify', className: 'my-align-justify' }
+            ]
+		},
 		wordCount: {
             onUpdate: stats => {
                 // Prints the current content statistics.
@@ -46,7 +100,7 @@
             }
 		},
 		alignment: {
-            options: [                
+            options: [
 				{ name: 'left', className: 'text-left' },
 				{ name: 'center', className: 'text-center' },
 				{ name: 'right', className: 'text-right' }
@@ -55,7 +109,10 @@
 	} )
 		.then( editor => {
 			window.editor = editor;
-			editor.setData('<figure class=\"image image-style-align-left image_resized resize-75\" style="width:50%"><img src=\"https://ntpproductionall.blob.core.windows.net/ntp-content-production/content/do_31265260262807961612081/artifact/................media-l-24-democracy-and-media-class-vii-assamese_1544507157016.jpg\" alt=\"do_31265260262807961612081\" data-asset-variable=\"do_31265260262807961612081\"></figure>')
+			console.log(editor.getData())
+
+			CKEditorInspector.attach( editor );
+			editor.setData('<p class=\"my-align-justify\">Welcome</p><figure class=\"image image-style-align-left image_resized\" style="width: 25%"><img src=\"https://ntpproductionall.blob.core.windows.net/ntp-content-production/content/do_31265260262807961612081/artifact/................media-l-24-democracy-and-media-class-vii-assamese_1544507157016.jpg\" alt=\"do_31265260262807961612081\" data-asset-variable=\"do_31265260262807961612081\"></figure>')
 		} )
 		.catch( error => {
 			console.error( 'There was a problem initializing the editor.', error );

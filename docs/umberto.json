@@ -13,7 +13,12 @@
 		"builds/guides/integration/frameworks/vuejs.html": "builds/guides/integration/frameworks/vuejs-v3.html",
 		"builds/guides/license-and-legal.html": "builds/guides/support/license-and-legal.html",
 		"builds/guides/migrate.html": "builds/guides/migration/migration-from-ckeditor-4.html",
+		"builds/guides/migration/migration-to-25.0.0.html": "builds/guides/migration/migration-to-25.html",
+		"builds/guides/migration/migration-to-26.0.0.html": "builds/guides/migration/migration-to-26.html",
+		"builds/guides/migration/migration-to-27.0.0.html": "builds/guides/migration/migration-to-27.html",
+		"builds/guides/migration/migration-to-27.1.0.html": "guides/migration/migration-to-27.html#migration-to-ckeditor-5-v2710",
 		"builds/guides/reporting-issues.html": "builds/guides/support/reporting-issues.html",
+		"builds/guides/whats-new.html": "features/index.html",
 		"features/blocktoolbar.html": "features/toolbar/blocktoolbar.html",
 		"features/ckfinder.html": "features/image-upload/ckfinder.html",
 		"features/collaboration/annotation-customization/annotations-custom-configuration.html": "features/collaboration/annotations/annotations-custom-configuration.html",
@@ -257,6 +262,11 @@
 					"name": "Pasting",
 					"id": "features-pasting",
 					"slug": "pasting"
+				},
+				{
+					"name": "Revision history",
+					"id": "features-revision-history",
+					"slug": "revision-history"
 				},
 				{
 					"name": "Toolbar",

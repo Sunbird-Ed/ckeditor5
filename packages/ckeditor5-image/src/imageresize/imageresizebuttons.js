@@ -12,11 +12,13 @@ import { ButtonView, DropdownButtonView, Model, createDropdown, addListToDropdow
 import { CKEditorError, Collection } from 'ckeditor5/src/utils';
 
 import ImageResizeEditing from './imageresizeediting';
+import { isSupported } from './utils';
 
 const RESIZE_ICONS = {
 	small: icons.objectSizeSmall,
 	medium: icons.objectSizeMedium,
 	large: icons.objectSizeLarge,
+	full: icons.objectFullWidth,
 	original: icons.objectSizeFull
 };
 
@@ -67,13 +69,20 @@ export default class ImageResizeButtons extends Plugin {
 		const options = editor.config.get( 'image.resizeOptions' );
 		const command = editor.commands.get( 'resizeImage' );
 
+		const optionsToConvert = options.filter(
+			option => isSupported( option.name )
+		);
+
+		const shouldUseClasses = optionsToConvert.some( option => !!option.className );
+
+
 		this.bind( 'isEnabled' ).to( command );
 
 		for ( const option of options ) {
-			this._registerImageResizeButton( option );
+			this._registerImageResizeButton( option, shouldUseClasses );
 		}
 
-		this._registerImageResizeDropdown( options );
+		this._registerImageResizeDropdown( options, shouldUseClasses );
 	}
 
 	/**
@@ -82,10 +91,16 @@ export default class ImageResizeButtons extends Plugin {
 	 * @private
 	 * @param {module:image/imageresize/imageresizebuttons~ImageResizeOption} resizeOption A model of the resize option.
 	 */
-	_registerImageResizeButton( option ) {
+	_registerImageResizeButton( option, shouldUseClasses ) {
 		const editor = this.editor;
-		const { name, value, icon } = option;
-		const optionValueWithUnit = value ? value + this._resizeUnit : null;
+		const { name, value, icon, className } = option;
+		let optionValueWithUnit;
+
+		if ( shouldUseClasses ) {
+			optionValueWithUnit = name ? name : null;
+		} else {
+			optionValueWithUnit = value ? value + this._resizeUnit : null;
+		}
 
 		editor.ui.componentFactory.add( name, locale => {
 			const button = new ButtonView( locale );
@@ -123,7 +138,11 @@ export default class ImageResizeButtons extends Plugin {
 			button.bind( 'isOn' ).to( command, 'value', getIsOnButtonCallback( optionValueWithUnit ) );
 
 			this.listenTo( button, 'execute', () => {
-				editor.execute( 'resizeImage', { width: optionValueWithUnit } );
+				if ( shouldUseClasses ) {
+					editor.execute( 'resizeImage', { value: optionValueWithUnit } );
+				} else {
+					editor.execute( 'resizeImage', { width: optionValueWithUnit } );
+				}
 			} );
 
 			return button;
@@ -137,7 +156,7 @@ export default class ImageResizeButtons extends Plugin {
 	 * @private
 	 * @param {Array.<module:image/imageresize/imageresizebuttons~ImageResizeOption>} options An array of configured options.
 	 */
-	_registerImageResizeDropdown( options ) {
+	_registerImageResizeDropdown( options, shouldUseClasses ) {
 		const editor = this.editor;
 		const t = editor.t;
 		const originalSizeOption = options.find( option => !option.value );
