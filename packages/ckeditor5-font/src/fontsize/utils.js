@@ -32,7 +32,7 @@ const namedPresets = {
 			model: 'tiny',
 			view: {
 				name: 'span',
-				classes: 'text-tiny',
+				classes: 'fs-tiny',
 				priority: 7
 			}
 		};
@@ -43,7 +43,7 @@ const namedPresets = {
 			model: 'small',
 			view: {
 				name: 'span',
-				classes: 'text-small',
+				classes: 'fs-small',
 				priority: 7
 			}
 		};
@@ -54,7 +54,7 @@ const namedPresets = {
 			model: 'big',
 			view: {
 				name: 'span',
-				classes: 'text-big',
+				classes: 'fs-big',
 				priority: 7
 			}
 		};
@@ -65,7 +65,150 @@ const namedPresets = {
 			model: 'huge',
 			view: {
 				name: 'span',
-				classes: 'text-huge',
+				classes: 'fs-huge',
+				priority: 7
+			}
+		};
+	},
+	get eight() {
+		return {
+			title: '8',
+			model: 'eight',
+			view: {
+				name: 'span',
+				classes: 'fs-8',
+				priority: 7
+			}
+		};
+	},
+	get ten() {
+		return {
+			title: '10',
+			model: 'ten',
+			view: {
+				name: 'span',
+				classes: 'fs-10',
+				priority: 7
+			}
+		};
+	},
+	get twelve() {
+		return {
+			title: '12',
+			model: 'twelve',
+			view: {
+				name: 'span',
+				classes: 'fs-12',
+				priority: 7
+			}
+		};
+	},
+	get fourteen() {
+		return {
+			title: '14',
+			model: 'fourteen',
+			view: {
+				name: 'span',
+				classes: 'fs-14',
+				priority: 7
+			}
+		};
+	},
+	get sixteen() {
+		return {
+			title: '16',
+			model: 'sixteen',
+			view: {
+				name: 'span',
+				classes: 'fs-16',
+				priority: 7
+			}
+		};
+	},
+	get eighteen() {
+		return {
+			title: '18',
+			model: 'eighteen',
+			view: {
+				name: 'span',
+				classes: 'fs-18',
+				priority: 7
+			}
+		};
+	},
+	get twenty() {
+		return {
+			title: '20',
+			model: 'twenty',
+			view: {
+				name: 'span',
+				classes: 'fs-20',
+				priority: 7
+			}
+		};
+	},
+	get twentytwo() {
+		return {
+			title: '22',
+			model: 'twentytwo',
+			view: {
+				name: 'span',
+				classes: 'fs-22',
+				priority: 7
+			}
+		};
+	},
+	get twentyfour() {
+		return {
+			title: '24',
+			model: 'twentyfour',
+			view: {
+				name: 'span',
+				classes: 'fs-24',
+				priority: 7
+			}
+		};
+	},
+	get twentysix() {
+		return {
+			title: '26',
+			model: 'twentysix',
+			view: {
+				name: 'span',
+				classes: 'fs-26',
+				priority: 7
+			}
+		};
+	},
+	get twentyeight() {
+		return {
+			title: '28',
+			model: 'twentyeight',
+			view: {
+				name: 'span',
+				classes: 'fs-28',
+				priority: 7
+			}
+		};
+	},
+	get thirty() {
+		return {
+			title: '30',
+			model: 'thirty',
+			view: {
+				name: 'span',
+				classes: 'fs-30',
+				priority: 7
+			}
+		};
+	},
+	get thirtysix() {
+		return {
+			title: '36',
+			model: 'thirtysix',
+			view: {
+				name: 'span',
+				classes: 'fs-36',
 				priority: 7
 			}
 		};

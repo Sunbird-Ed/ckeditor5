@@ -42,7 +42,7 @@ import MathText from '../mathplugin/mathTextPlugin';
 
 import SpecialCharacters from '@ckeditor/ckeditor5-special-characters/src/specialcharacters';
 import SpecialCharactersEssentials from '@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials';
-import Font from '@ckeditor/ckeditor5-font/src/font';
+import Font from '../../ckeditor5-font/src/font';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
 import Strikethrough from '@ckeditor/ckeditor5-basic-styles/src/strikethrough';
 import Code from '@ckeditor/ckeditor5-basic-styles/src/code';

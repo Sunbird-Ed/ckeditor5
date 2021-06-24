@@ -93,7 +93,21 @@ export default class FontSizeUI extends Plugin {
 			Tiny: t( 'Tiny' ),
 			Small: t( 'Small' ),
 			Big: t( 'Big' ),
-			Huge: t( 'Huge' )
+			Huge: t( 'Huge' ),
+			XLarge: t( 'XLarge' ),
+			'8': t( '8' ),
+			'10': t( '10' ),
+			'12': t( '12' ),
+			'14': t( '14' ),
+			'16': t( '16' ),
+			'18': t( '18' ),
+			'20': t( '20' ),
+			'22': t( '22' ),
+			'24': t( '24' ),
+			'26': t( '26' ),
+			'28': t( '28' ),
+			'30': t( '30' ),
+			'36': t( '36' )
 		};
 
 		const options = normalizeOptions( editor.config.get( FONT_SIZE ).options );

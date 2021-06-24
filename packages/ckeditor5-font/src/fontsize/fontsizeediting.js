@@ -61,7 +61,20 @@ export default class FontSizeEditing extends Plugin {
 				'small',
 				'default',
 				'big',
-				'huge'
+				'huge',
+				'eight',
+				'ten',
+				'twelve',
+				'fourteen',
+				'sixteen',
+				'eighteen',
+				'twenty',
+				'twentytwo',
+				'twentyfour',
+				'twentysix',
+				'twentyeight',
+				'thirty',
+				'thirtysix'
 			],
 			supportAllValues: false
 		} );
