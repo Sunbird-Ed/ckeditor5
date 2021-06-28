@@ -70,6 +70,83 @@ const namedPresets = {
 			}
 		};
 	},
+	get one() {
+		return {
+			title: '1',
+			model: 'one',
+			view: {
+				name: 'span',
+				classes: 'fs-1',
+				priority: 7
+			}
+		};
+	},
+	get two() {
+		return {
+			title: '2',
+			model: 'two',
+			view: {
+				name: 'span',
+				classes: 'fs-2',
+				priority: 7
+			}
+		};
+	},
+	get three() {
+		return {
+			title: '3',
+			model: 'three',
+			view: {
+				name: 'span',
+				classes: 'fs-3',
+				priority: 7
+			}
+		};
+	},
+	get four() {
+		return {
+			title: '4',
+			model: 'four',
+			view: {
+				name: 'span',
+				classes: 'fs-4',
+				priority: 7
+			}
+		};
+	},
+	get five() {
+		return {
+			title: '5',
+			model: 'five',
+			view: {
+				name: 'span',
+				classes: 'fs-5',
+				priority: 7
+			}
+		};
+	},
+	get six() {
+		return {
+			title: '6',
+			model: 'six',
+			view: {
+				name: 'span',
+				classes: 'fs-6',
+				priority: 7
+			}
+		};
+	},
+	get seven() {
+		return {
+			title: '7',
+			model: 'seven',
+			view: {
+				name: 'span',
+				classes: 'fs-7',
+				priority: 7
+			}
+		};
+	},
 	get eight() {
 		return {
 			title: '8',
@@ -77,6 +154,17 @@ const namedPresets = {
 			view: {
 				name: 'span',
 				classes: 'fs-8',
+				priority: 7
+			}
+		};
+	},
+	get nine() {
+		return {
+			title: '9',
+			model: 'nine',
+			view: {
+				name: 'span',
+				classes: 'fs-9',
 				priority: 7
 			}
 		};
@@ -92,6 +180,17 @@ const namedPresets = {
 			}
 		};
 	},
+	get eleven() {
+		return {
+			title: '11',
+			model: 'eleven',
+			view: {
+				name: 'span',
+				classes: 'fs-11',
+				priority: 7
+			}
+		};
+	},
 	get twelve() {
 		return {
 			title: '12',
@@ -99,6 +198,17 @@ const namedPresets = {
 			view: {
 				name: 'span',
 				classes: 'fs-12',
+				priority: 7
+			}
+		};
+	},
+	get thirteen() {
+		return {
+			title: '13',
+			model: 'thirteen',
+			view: {
+				name: 'span',
+				classes: 'fs-13',
 				priority: 7
 			}
 		};
@@ -114,6 +224,17 @@ const namedPresets = {
 			}
 		};
 	},
+	get fifteen() {
+		return {
+			title: '15',
+			model: 'fifteen',
+			view: {
+				name: 'span',
+				classes: 'fs-15',
+				priority: 7
+			}
+		};
+	},
 	get sixteen() {
 		return {
 			title: '16',
@@ -121,6 +242,17 @@ const namedPresets = {
 			view: {
 				name: 'span',
 				classes: 'fs-16',
+				priority: 7
+			}
+		};
+	},
+	get seventeen() {
+		return {
+			title: '17',
+			model: 'seventeen',
+			view: {
+				name: 'span',
+				classes: 'fs-17',
 				priority: 7
 			}
 		};
@@ -136,6 +268,17 @@ const namedPresets = {
 			}
 		};
 	},
+	get nineteen() {
+		return {
+			title: '19',
+			model: 'nineteen',
+			view: {
+				name: 'span',
+				classes: 'fs-19',
+				priority: 7
+			}
+		};
+	},
 	get twenty() {
 		return {
 			title: '20',
@@ -143,6 +286,17 @@ const namedPresets = {
 			view: {
 				name: 'span',
 				classes: 'fs-20',
+				priority: 7
+			}
+		};
+	},
+	get twentyone() {
+		return {
+			title: '21',
+			model: 'twentyone',
+			view: {
+				name: 'span',
+				classes: 'fs-21',
 				priority: 7
 			}
 		};
@@ -158,6 +312,17 @@ const namedPresets = {
 			}
 		};
 	},
+	get twentythree() {
+		return {
+			title: '23',
+			model: 'twentythree',
+			view: {
+				name: 'span',
+				classes: 'fs-23',
+				priority: 7
+			}
+		};
+	},
 	get twentyfour() {
 		return {
 			title: '24',
@@ -165,6 +330,17 @@ const namedPresets = {
 			view: {
 				name: 'span',
 				classes: 'fs-24',
+				priority: 7
+			}
+		};
+	},
+	get twentyfive() {
+		return {
+			title: '25',
+			model: 'twentyfive',
+			view: {
+				name: 'span',
+				classes: 'fs-25',
 				priority: 7
 			}
 		};
@@ -180,6 +356,17 @@ const namedPresets = {
 			}
 		};
 	},
+	get twentyseven() {
+		return {
+			title: '27',
+			model: 'twentyseven',
+			view: {
+				name: 'span',
+				classes: 'fs-27',
+				priority: 7
+			}
+		};
+	},
 	get twentyeight() {
 		return {
 			title: '28',
@@ -187,6 +374,17 @@ const namedPresets = {
 			view: {
 				name: 'span',
 				classes: 'fs-28',
+				priority: 7
+			}
+		};
+	},
+	get twentynine() {
+		return {
+			title: '29',
+			model: 'twentynine',
+			view: {
+				name: 'span',
+				classes: 'fs-29',
 				priority: 7
 			}
 		};
