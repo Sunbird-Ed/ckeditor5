@@ -19,6 +19,19 @@
 		.text-left { text-align: left }
 		.text-center { text-align: center }
 		.text-right { text-align: right }
+		.fs-8 { font-size:  0.5rem; }
+		.fs-10 { font-size: 0.625rem;  }
+		.fs-12 { font-size: 0.75rem;  }
+		.fs-14 { font-size: 0.875rem;  }
+		.fs-16 { font-size: 1rem;  }
+		.fs-18 { font-size: 1.125rem;  }
+		.fs-20 { font-size: 1.25rem;  }
+		.fs-22 { font-size: 1.375rem;  }
+		.fs-24 { font-size: 1.5rem;  }
+		.fs-26 { font-size: 1.625rem;  }
+		.fs-28 { font-size: 1.75rem;  }
+		.fs-30 { font-size: 1.875rem;  }
+		.fs-36 { font-size: 2.25rem;  }
 
 
 	</style>
@@ -46,6 +59,23 @@
 <script>
 
 	ClassicEditor.create( document.querySelector( '#editor' ), {
+		fontSize: {
+				options: [
+				'eight',
+				'ten',
+				'twelve',
+				'fourteen',
+				'sixteen',
+				'eighteen',
+				'twenty',
+				'twentytwo',
+				'twentyfour',
+				'twentysix',
+				'twentyeight',
+				'thirty',
+				'thirtysix'
+				]
+		},
 		image: {
 			resizeUnit: '%',
 			resizeOptions: [ {
@@ -79,40 +109,35 @@
 				className: "resize-original"
 			}
 			],
-			toolbar: [ 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight', '|',
+			toolbar: [ 'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:full', 'imageStyle:alignRight', '|',
 				'resizeImage:25', 'resizeImage:50', 'resizeImage:75', 'resizeImage:100',
 				'resizeImage:original'
 			],
 			styles: [ 'full', 'alignLeft', 'alignRight', 'alignCenter' ]
 		},
-		alignment: {
-            options: [
-                { name: 'left', className: 'my-align-left' },
-                { name: 'right', className: 'my-align-right' },
-								{ name: 'center', className: 'my-align-center' },
-								{ name: 'justify', className: 'my-align-justify' }
-            ]
-		},
 		wordCount: {
-            onUpdate: stats => {
-                // Prints the current content statistics.
-                console.log( `Characters: ${ stats.characters }\nWords: ${ stats.words }` );
-            }
+				onUpdate: stats => {
+						// Prints the current content statistics.
+						console.log( `Characters: ${ stats.characters }\nWords: ${ stats.words }` );
+				}
 		},
 		alignment: {
-            options: [
-				{ name: 'left', className: 'text-left' },
-				{ name: 'center', className: 'text-center' },
-				{ name: 'right', className: 'text-right' }
+				options: [
+					{ name: 'left', className: 'text-left' },
+					{ name: 'center', className: 'text-center' },
+					{ name: 'right', className: 'text-right' }
+				]
+		},
+		toolbar: [
+            'heading', 'bulletedList', 'numberedList', 'fontSize', 'undo', 'redo'
 			]
-        },
 	} )
 		.then( editor => {
 			window.editor = editor;
 			console.log(editor.getData())
 
 			CKEditorInspector.attach( editor );
-			editor.setData('<p class=\"my-align-justify\">Welcome</p><figure class=\"image image-style-align-left image_resized\" style="width: 25%"><img src=\"https://ntpproductionall.blob.core.windows.net/ntp-content-production/content/do_31265260262807961612081/artifact/................media-l-24-democracy-and-media-class-vii-assamese_1544507157016.jpg\" alt=\"do_31265260262807961612081\" data-asset-variable=\"do_31265260262807961612081\"></figure>')
+			editor.setData('<p><span class=\"fs-16\">Welcome</span></p><figure class=\"image image-style-align-left resize-50\" ><img src=\"https://ntpproductionall.blob.core.windows.net/ntp-content-production/content/do_31265260262807961612081/artifact/................media-l-24-democracy-and-media-class-vii-assamese_1544507157016.jpg\" alt=\"do_31265260262807961612081\" data-asset-variable=\"do_31265260262807961612081\"></figure>')
 		} )
 		.catch( error => {
 			console.error( 'There was a problem initializing the editor.', error );
